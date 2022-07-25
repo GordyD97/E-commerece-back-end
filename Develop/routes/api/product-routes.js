@@ -4,19 +4,68 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 // get all products
-router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+router.get('/', async (req, res) => {
+
+  const productData = await Tag.findAll({
+    include: ['id', "product_name"],
+    include: [{
+      model: Product,
+      attributes: [
+        'id',
+        'product_name',
+        'price',
+        'stock',
+        'category_id'
+      ]
+    }],
+
+
+  })
+    .then().status(200).json(productData);
+
+
 });
+
+
+// find all products
+// be sure to include its associated Category and Tag data
+
 
 // get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+router.get('/:id', async (req, res) => {
+  const productData = await Tag.findOne({
+    include: ['id', "product_name"],
+    include: [{
+      model: Product,
+      attributes: [
+        'id',
+        'product_name',
+        'price',
+        'stock',
+        'category_id'
+      ]
+    }],
+
+
+  })
+    .then().status(200).json(tagData);
+
+
 });
+// find a single product by its `id`
+// be sure to include its associated Category and Tag data
+
 
 // create new product
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  try {
+    const tagdata = await Tag.create({ product_name: req.body.prodcut_name });
+    res.status(200).json(tagdata);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -91,6 +140,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+
 });
 
 module.exports = router;
