@@ -1,20 +1,18 @@
 # E-commerece-back-end
 
-## Live Page
-
-<!-- live url goes here -->
-
 ## Description
 
-<!-- description of application here  -->
+with ecommerce platforms being one of the most used platforms on the internet handling billions of dollars each day this is a base strucutre of the application. 
 
 ## Installation
-<!-- list the technologies that were usesd in the process of creatign the application. -->
-
-<!-- use a list to keep each one organized -->
+* Mysql
+* dontenv
+* express
+* sequalize
 
 ## Demo 
 <!-- demo will contain multiple gifs that will meet the criteria of the hw -->
+
 
 <!-- 
     1. Demonstrate how to seed the database from the command line.
